@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAKE *101# BY @TUANTOOL8683</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .upload-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .file-input {
+            margin: 10px 0;
+            padding: 10px;
+        }
+
+        .preview-container {
+            position: relative;
+            display: inline-block;
+            margin: 20px 0;
+        }
+
+        .phone-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .controls {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-warning {
+            background: #ffc107;
+            color: black;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        .position-controls {
+            margin: 10px 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .position-controls label {
+            display: block;
+            margin: 5px 0;
+            font-weight: bold;
+        }
+
+        .position-controls input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .content-editor {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .content-editor textarea {
+            width: 100%;
+            height: 200px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: monospace;
+            resize: vertical;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border: 1px solid #b8daff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .canvas-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        #canvas {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>FAKE *101# BY @TUANTOOL8683</h1>
+        
+        <div class="info-box">
+            <strong>Hướng dẫn:</strong><br>
+            1. Upload hình ảnh điện thoại thật của bạn<br>
+            2. Điều chỉnh vị trí X, Y để đặt nội dung vào đúng chỗ<br>
+            3. Tùy chỉnh nội dung hiển thị<br>
+            4. Tải xuống ảnh đã fake nha.
+        </div>
+
+        <div class="upload-section">
+            <h3>Hình ảnh điện thoại</h3>
+            <button class="btn btn-primary" onclick="loadDefaultImage()" style="margin: 10px;">Sử dụng ảnh mặc định</button>
+            <input type="file" id="imageInput" class="file-input" accept="image/*">
+            <div>Hoặc upload ảnh khác - Hỗ trợ: JPG, PNG, GIF</div>
+        </div>
+
+        <div class="content-editor">
+            <h3>Nội dung hiển thị:</h3>
+            <textarea id="contentEditor" placeholder="Nhập nội dung để hiển thị trên màn hình điện thoại...">843xxxxxxxx
+TKG:67.565đ
+Tien DD:0đ
+HSD: 0h 27/11/2025. Bam:
+1. 29K/3ngay=4GB+MPthoai+SMS+TV360
+2. 10K/ngay=6GB
+3. 15K/3ngay=3GB</textarea>
+        </div>
+
+        <div class="position-controls">
+            <div>
+                <label>X (px):</label>
+                <input type="number" id="posX" value="65" min="0">
+            </div>
+            <div>
+                <label>Y (px):</label>
+                <input type="number" id="posY" value="400" min="0">
+            </div>
+            <div>
+                <label>Width (px):</label>
+                <input type="number" id="width" value="460" min="50">
+            </div>
+            <div>
+                <label>Height (px):</label>
+                <input type="number" id="height" value="320" min="50">
+            </div>
+            <div>
+                <label>Font Size:</label>
+                <input type="number" id="fontSize" value="25" min="8" max="50">
+            </div>
+            <div>
+                <label>Màu chữ:</label>
+                <select id="textColor">
+                    <option value="black">Đen</option>
+                    <option value="white">Trắng</option>
+                    <option value="red">Đỏ</option>
+                    <option value="blue">Xanh dương</option>
+                </select>
+            </div>
+            <div>
+                <label>
+                    <input type="checkbox" id="showCurrentTime" checked>
+                    Hiển thị giờ hiện tại
+                </label>
+            </div>
+            <div>
+                <label>Vị trí giờ X:</label>
+                <input type="number" id="timeX" value="25" min="0">
+            </div>
+            <div>
+                <label>Vị trí giờ Y:</label>
+                <input type="number" id="timeY" value="35" min="0">
+            </div>
+            <div>
+                <label>Font size giờ:</label>
+                <input type="number" id="timeFontSize" value="23" min="8" max="50">
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-primary" onclick="loadDefaultImage()">Ảnh mặc định</button>
+            <button class="btn btn-primary" onclick="updatePreview()">Cập nhật xem trước</button>
+            <button class="btn btn-success" onclick="downloadImage()">Tải xuống</button>
+            <button class="btn btn-warning" onclick="clearCanvas()">Xóa</button>
+        </div>
+
+        <div class="canvas-container" id="canvasContainer" style="display: none;">
+            <canvas id="canvas"></canvas>
+        </div>
+    </div>
+
+    <script>
+        let originalImage = null;
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Load ảnh mặc định
+        function loadDefaultImage() {
+            const img = new Image();
+            img.onload = function() {
+                originalImage = img;
+                canvas.width = img.width;
+                canvas.height = img.height;
+                document.getElementById('canvasContainer').style.display = 'block';
+                
+                // Đặt vị trí tối ưu cho ảnh mặc định
+                document.getElementById('posX').value = 56;
+                document.getElementById('posY').value = 780;
+                document.getElementById('width').value = 480;
+                document.getElementById('height').value = 280;
+                document.getElementById('timeX').value = 25;
+                document.getElementById('timeY').value = 35;
+                document.getElementById('timeFontSize').value = 23;
+                
+                updatePreview();
+            };
+            // Sử dụng ảnh mặc định
+            img.src = 'photo_2025-09-28_14-19-37.jpg';
+        }
+        
+        // Upload hình ảnh
+        document.getElementById('imageInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const img = new Image();
+                img.onload = function() {
+                    originalImage = img;
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    document.getElementById('canvasContainer').style.display = 'block';
+                    
+                    // Tự động điều chỉnh vị trí dựa trên kích thước ảnh
+                    const imgWidth = img.width;
+                    const imgHeight = img.height;
+                    
+                    // Ước tính vị trí popup (thường ở 2/3 dưới màn hình)
+                    document.getElementById('posX').value = Math.floor(imgWidth * 0.1);
+                    document.getElementById('posY').value = Math.floor(imgHeight * 0.6);
+                    document.getElementById('width').value = Math.floor(imgWidth * 0.8);
+                    document.getElementById('height').value = Math.floor(imgHeight * 0.3);
+                    
+                    // Đặt lại vị trí giờ theo mặc định
+                    document.getElementById('timeX').value = 25;
+                    document.getElementById('timeY').value = 35;
+                    document.getElementById('timeFontSize').value = 23;
+                    
+                    updatePreview();
+                };
+                img.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+
+        function updatePreview() {
+            if (!originalImage) {
+                alert('Vui lòng chọn hình ảnh trước!');
+                return;
+            }
+
+            // Vẽ hình gốc
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(originalImage, 0, 0);
+
+            // Lấy thông số
+            const x = parseInt(document.getElementById('posX').value);
+            const y = parseInt(document.getElementById('posY').value);
+            const w = parseInt(document.getElementById('width').value);
+            const h = parseInt(document.getElementById('height').value);
+            const fontSize = parseInt(document.getElementById('fontSize').value);
+            const textColor = document.getElementById('textColor').value;
+            const content = document.getElementById('contentEditor').value;
+
+            // Vẽ nền cho text (tùy chọn)
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+            ctx.fillRect(x, y, w, h);
+
+            // Vẽ nội dung văn bản
+            ctx.fillStyle = textColor;
+            ctx.font = `${fontSize}px Arial`;
+            
+            const lines = content.split('\n');
+            const lineHeight = fontSize + 4;
+            
+            lines.forEach((line, index) => {
+                if (line.trim()) {
+                    ctx.fillText(line, x + 10, y + 25 + (index * lineHeight));
+                }
+            });
+
+            // Vẽ giờ hiện tại nếu được bật
+            if (document.getElementById('showCurrentTime').checked) {
+                drawCurrentTime();
+            }
+
+            // Bỏ watermark theo yêu cầu
+            // addWatermark();
+        }
+
+        function drawCurrentTime() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const currentTime = `${hours}:${minutes}`;
+            
+            const timeX = parseInt(document.getElementById('timeX').value);
+            const timeY = parseInt(document.getElementById('timeY').value);
+            const timeFontSize = parseInt(document.getElementById('timeFontSize').value);
+            
+            // Vẽ giờ hiện tại với font system Android
+            ctx.save();
+            ctx.fillStyle = '#666666';
+            ctx.font = `${timeFontSize}px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif`;
+            ctx.textAlign = 'left';
+            ctx.fillText(currentTime, timeX, timeY);
+            ctx.restore();
+        }
+
+        function addWatermark() {
+            // Watermark lớn ở giữa
+            ctx.save();
+            ctx.globalAlpha = 0.2;
+            ctx.fillStyle = 'red';
+            ctx.font = 'bold 48px Arial';
+            ctx.textAlign = 'center';
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            ctx.rotate(-Math.PI / 6);
+            ctx.fillText('DEMO ONLY', 0, 0);
+            ctx.restore();
+
+            // Watermark nhỏ ở góc
+            ctx.fillStyle = 'rgba(255, 0, 0, 0.8)';
+            ctx.fillRect(canvas.width - 150, 10, 140, 25);
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 12px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('DEMO - NOT REAL', canvas.width - 145, 27);
+        }
+
+        function downloadImage() {
+            if (!originalImage) {
+                alert('Vui lòng tạo preview trước!');
+                return;
+            }
+
+            const link = document.createElement('a');
+            link.download = 'phone_demo_' + Date.now() + '.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            originalImage = null;
+            document.getElementById('imageInput').value = '';
+            document.getElementById('canvasContainer').style.display = 'none';
+        }
+
+        // Auto update khi thay đổi các thông số
+        ['posX', 'posY', 'width', 'height', 'fontSize', 'textColor', 'timeX', 'timeY', 'timeFontSize'].forEach(id => {
+            document.getElementById(id).addEventListener('input', function() {
+                if (originalImage) updatePreview();
+            });
+        });
+
+        // Auto update khi thay đổi checkbox
+        document.getElementById('showCurrentTime').addEventListener('change', function() {
+            if (originalImage) updatePreview();
+        });
+
+        document.getElementById('contentEditor').addEventListener('input', function() {
+            if (originalImage) updatePreview();
+        });
+
+        // Tự động cập nhật giờ mỗi giây
+        setInterval(function() {
+            if (originalImage && document.getElementById('showCurrentTime').checked) {
+                updatePreview();
+            }
+        }, 1000);
+
+        // Tự động load ảnh mặc định khi trang được tải
+        window.onload = function() {
+            loadDefaultImage();
+        };
+    </script>
+</body>
+</html>
