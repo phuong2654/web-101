@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAKE *101# BY @TUANTOOL8683</title>
+    <title>FAKE *101# CỦA @TUANTOOL8383</title>
     <style>
         * {
             margin: 0;
@@ -216,11 +216,54 @@
             border: 1px solid #ddd;
             border-radius: 8px;
         }
+
+        .promo-text {
+            text-align: center;
+            margin: 15px 0;
+            padding: 0;
+            background: none;
+            border: none;
+            box-shadow: none;
+            font-size: 15px;
+            font-weight: 500;
+            animation: color-change 3s ease-in-out infinite;
+        }
+
+        @keyframes color-change {
+            0% { color: #667eea; }
+            25% { color: #e74c3c; }
+            50% { color: #f39c12; }
+            75% { color: #27ae60; }
+            100% { color: #667eea; }
+        }
+
+        .promo-text a {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: 600;
+            animation: link-glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes link-glow {
+            from { 
+                color: #ffd700;
+                text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+            }
+            to { 
+                color: #ffff00;
+                text-shadow: 0 0 8px rgba(255, 255, 0, 0.8);
+            }
+        }
+
+        .promo-text a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>FAKE *101# BY @TUANTOOL8683</h1>
+        <h1>FAKE *101# CỦA @TUANTOOL8383</h1>
         
         <div class="info-box">
             <strong>Hướng dẫn:</strong><br>
@@ -248,35 +291,30 @@ HSD: 0h 27/11/2025. Bam:
 3. 15K/3ngay=3GB</textarea>
         </div>
 
+        <div class="promo-text">
+            Cho thuê gửi SMS, OTP game <a href="https://t.me/chothuesmsbot" target="_blank">@chothuesmsbot</a>
+        </div>
+
         <div class="position-controls">
             <div>
-                <label>X (px):</label>
+                <label>Vị trí ngang:</label>
                 <input type="number" id="posX" value="65" min="0">
             </div>
             <div>
-                <label>Y (px):</label>
+                <label>Vị trí dọc:</label>
                 <input type="number" id="posY" value="400" min="0">
             </div>
             <div>
-                <label>Width (px):</label>
+                <label>Chiều rộng:</label>
                 <input type="number" id="width" value="460" min="50">
             </div>
             <div>
-                <label>Height (px):</label>
+                <label>Chiều cao:</label>
                 <input type="number" id="height" value="320" min="50">
             </div>
             <div>
-                <label>Font Size:</label>
+                <label>Kích thước chữ:</label>
                 <input type="number" id="fontSize" value="25" min="8" max="50">
-            </div>
-            <div>
-                <label>Màu chữ:</label>
-                <select id="textColor">
-                    <option value="black">Đen</option>
-                    <option value="white">Trắng</option>
-                    <option value="red">Đỏ</option>
-                    <option value="blue">Xanh dương</option>
-                </select>
             </div>
             <div>
                 <label>
@@ -285,15 +323,15 @@ HSD: 0h 27/11/2025. Bam:
                 </label>
             </div>
             <div>
-                <label>Vị trí giờ X:</label>
+                <label>Vị trí giờ ngang:</label>
                 <input type="number" id="timeX" value="25" min="0">
             </div>
             <div>
-                <label>Vị trí giờ Y:</label>
+                <label>Vị trí giờ dọc:</label>
                 <input type="number" id="timeY" value="35" min="0">
             </div>
             <div>
-                <label>Font size giờ:</label>
+                <label>Kích thước chữ giờ:</label>
                 <input type="number" id="timeFontSize" value="23" min="8" max="50">
             </div>
         </div>
@@ -391,7 +429,6 @@ HSD: 0h 27/11/2025. Bam:
             const w = parseInt(document.getElementById('width').value);
             const h = parseInt(document.getElementById('height').value);
             const fontSize = parseInt(document.getElementById('fontSize').value);
-            const textColor = document.getElementById('textColor').value;
             const content = document.getElementById('contentEditor').value;
 
             // Vẽ nền cho text (tùy chọn)
@@ -399,7 +436,7 @@ HSD: 0h 27/11/2025. Bam:
             ctx.fillRect(x, y, w, h);
 
             // Vẽ nội dung văn bản
-            ctx.fillStyle = textColor;
+            ctx.fillStyle = 'black';
             ctx.font = `${fontSize}px Arial`;
             
             const lines = content.split('\n');
@@ -480,7 +517,7 @@ HSD: 0h 27/11/2025. Bam:
         }
 
         // Auto update khi thay đổi các thông số
-        ['posX', 'posY', 'width', 'height', 'fontSize', 'textColor', 'timeX', 'timeY', 'timeFontSize'].forEach(id => {
+        ['posX', 'posY', 'width', 'height', 'fontSize', 'timeX', 'timeY', 'timeFontSize'].forEach(id => {
             document.getElementById(id).addEventListener('input', function() {
                 if (originalImage) updatePreview();
             });
